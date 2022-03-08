@@ -2,6 +2,39 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+What you will see in this project:
+
+1 x Dropdown
+
+- Label: "Duration in bed"
+- Items: 0-24 hours, in 30-minute increments
+
+1 x Dropdown
+
+- Label: "Duration asleep"
+- Items: 0-24 hours, in 30-minute increments
+
+1 x button
+
+- Initially disabled
+- When the User selects a value for both time inputs, then the button is enabled.
+
+When the User clicks the button:
+
+- Text displays “Loading”
+
+Output:
+
+- After "saving" successfully, there would be an ouput text with the score (100 \* duration_asleep/duration_in_bed)
+
+Different scenarios: (Duration in bed should be greater or equal to duration asleep)
+
+- If duration in bed selected is 0, the only option for duration asleep is 0
+- if duration in bed selected is less than duration asleep, the button would be disabled
+
+I created a public mock API post request with Postman -
+Api: https://405e3123-afa2-425a-aa7d-055e1de49dc7.mock.pstmn.io/scores
+
 ## Available Scripts
 
 In the project directory, you can run:

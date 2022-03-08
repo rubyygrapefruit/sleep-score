@@ -1,0 +1,42 @@
+.app {
+  text-align: center;
+}
+
+.app-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  text-align: center;
+}
+
+.app-text-container {
+  padding-bottom: 50px;
+}
+
+.app-output {
+  font-size: calc(30px + 2vmin);
+  height: 70px;
+  line-height: 70px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.app-form {
+  padding-top: 100px;
+  height: 260px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 50%;
+}
+
+.app-note {
+  font-size: 2vmin;
+}

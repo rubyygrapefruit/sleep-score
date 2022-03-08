@@ -1,8 +1,10 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
+test("loads and displays a disabled button", async () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+  expect(screen.getByLabelText("Duration in bed"));
+  expect(screen.getByLabelText("Duration asleep"));
+  expect(screen.getByRole("button")).toBeDisabled();
 });
