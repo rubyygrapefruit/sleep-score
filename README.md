@@ -2,7 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-What you will see in this project:
+
+
+https://user-images.githubusercontent.com/39013404/157229708-53ea3a3e-b90e-4b47-8e76-ffd898b779ec.mp4
+
+
+
+### What you will see in this project:
 
 1 x Dropdown
 
@@ -27,10 +33,20 @@ Output:
 
 - After "saving" successfully, there would be an ouput text with the score (100 \* duration_asleep/duration_in_bed)
 
-Different scenarios: (Duration in bed should be greater or equal to duration asleep)
+
+
+### Different scenarios: 
+
+**(Duration in bed should be greater or equal to duration asleep)**
+
+https://user-images.githubusercontent.com/39013404/157229788-9b984ba0-0d9d-44e3-967a-9454a6e1fe14.mp4
+
 
 - Duration asleep options will be based on duration in bed hours
   - For example: If 8 hours of duration in bed is selected, then duration asleep will show only options up to 8 as well.
+
+https://user-images.githubusercontent.com/39013404/157229904-9125fc33-08b5-4e3d-a77f-e2566bb47bee.mp4
+
 - If any time the user selects not a proper valid selection in either dropdown, the button would be disabled
 
 I created a public mock API post request with Postman -
