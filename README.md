@@ -29,8 +29,9 @@ Output:
 
 Different scenarios: (Duration in bed should be greater or equal to duration asleep)
 
-- If duration in bed selected is 0, the only option for duration asleep is 0
-- if duration in bed selected is less than duration asleep, the button would be disabled
+- Duration asleep options will be based on duration in bed hours
+  - For example: If 8 hours of duration in bed is selected, then duration asleep will show only options up to 8 as well.
+- If any time the user selects not a proper valid selection in either dropdown, the button would be disabled
 
 I created a public mock API post request with Postman -
 Api: https://405e3123-afa2-425a-aa7d-055e1de49dc7.mock.pstmn.io/scores
