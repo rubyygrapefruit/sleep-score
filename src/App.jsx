@@ -3,12 +3,15 @@ import "./App.scss";
 import Dropdown from "./Components/Dropdown";
 import post from "./Requests/post.js";
 
-// Create options for 0 - 24 hours in 30 min increments
-const getHourIncrements = () => {
+// Return array of increments in 30 mins increments from 0 to 24 hours or
+// from 0 to duration of sleep selected
+const getHourIncrements = (maxNum) => {
+  if (maxNum === 0) maxNum = 1;
   const arrayOfTimes = [];
-  for (let i = 0; i <= 48; i++) {
+  for (let i = 0; maxNum ? i < maxNum : i <= 48; i++) {
     arrayOfTimes[i] = 0.5 * i;
   }
+
   return arrayOfTimes;
 };
 
@@ -17,8 +20,8 @@ function App() {
   const [durationAsleep, setDurationAsleep] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [outputValue, setOutputValue] = useState(null);
-  const [isOnlyOption, setOnlyOption] = useState(false);
-  const hourIncrements = getHourIncrements();
+  const [durationAsleepOptions, setDurationAsleepOptions] = useState([]);
+  const allHourOptions = getHourIncrements();
 
   const getScore = () => {
     let score = ((100 * durationAsleep) / durationInBed).toFixed(2);
@@ -28,48 +31,50 @@ function App() {
     return score;
   };
 
-  // If duration in bed is 0, the only option for duration asleep should only be 0
+  // Calculate the max options for duration asleep after selecting duration in bed
   useEffect(() => {
     const setOptions = async () => {
-      const isDurationInBedZero = await getDurationInBed();
-      setOnlyOption(isDurationInBedZero);
-    };
+      const hours = await durationInBed;
 
+      setDurationAsleepOptions(getHourIncrements((hours + 0.5) * 2));
+    };
     setOptions();
   }, [durationInBed]);
 
-  const getDurationInBed = () => {
-    return durationInBed === 0 ? true : false;
-  };
-
-  const options = hourIncrements.map((hour) => {
-    return { value: hour, label: `${hour} hrs` };
-  });
-
+  // Duration in bed and duration asleep are disabled until both selected
   const isDisabled = () => {
-    if (
-      typeof durationAsleep === "number" &&
-      typeof durationInBed === "number" &&
-      durationInBed >= durationAsleep
-    )
+    if (durationInBed && durationAsleep) {
       return false;
-    return true;
+    } else {
+      return true;
+    }
   };
 
+  // Return an array of objects displaying dropdown options
+  const getOptions = (options) => {
+    return options.map((hour) => {
+      return { value: hour, label: `${hour} hrs` };
+    });
+  };
+
+  // Set duration in bed
+  const handleDurationInBed = (event) => {
+    setDurationInBed(parseFloat(event.target.value));
+  };
+
+  // Set duration asleep
+  const handleDurationInAsleep = (event) => {
+    setDurationAsleep(parseFloat(event.target.value));
+  };
+
+  // Post data to mock API
   const postData = async (data) => {
     await post(data);
     setOutputValue(data);
     setIsLoading(false);
   };
 
-  const handleDurationInBed = (event) => {
-    setDurationInBed(parseFloat(event.target.value));
-  };
-
-  const handleDurationInAsleep = (event) => {
-    setDurationAsleep(parseFloat(event.target.value));
-  };
-
+  // Submit data
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
@@ -83,12 +88,7 @@ function App() {
   return (
     <div className="app-container">
       <header className="app-header">
-        <div className="app-text-container">
-          <h1 className="app-title">Calculate your sleep score!</h1>
-          <div className="app-note">
-            Note: Duration in bed should be greater or equal to duration asleep
-          </div>
-        </div>
+        <h1 className="app-title">Calculate your sleep score</h1>
         <form className="app-form" onSubmit={handleSubmit} data-testid="form">
           {outputValue && (
             <output className="app-output" name="result">
@@ -98,17 +98,14 @@ function App() {
           <Dropdown
             label="Duration in bed"
             onChange={handleDurationInBed}
-            options={options}
+            options={getOptions(allHourOptions)}
             labelledby="duration-in-bed"
-            isDurationAsleep={false}
           />
           <Dropdown
             label="Duration asleep"
             onChange={handleDurationInAsleep}
-            options={options}
+            options={getOptions(durationAsleepOptions)}
             labelledby="duration-asleep"
-            isOnlyOption={isOnlyOption}
-            isDurationAsleep
           />
           <input
             type="submit"
