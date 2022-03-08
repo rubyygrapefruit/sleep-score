@@ -2,11 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-
-
-https://user-images.githubusercontent.com/39013404/157229708-53ea3a3e-b90e-4b47-8e76-ffd898b779ec.mp4
-
-
+https://user-images.githubusercontent.com/39013404/157231812-6070cf28-9722-4897-a0f7-f892f94c2fbb.mp4
 
 ### What you will see in this project:
 
@@ -39,15 +35,22 @@ Output:
 
 **(Duration in bed should be greater or equal to duration asleep)**
 
-https://user-images.githubusercontent.com/39013404/157229788-9b984ba0-0d9d-44e3-967a-9454a6e1fe14.mp4
 
 
 - Duration asleep options will be based on duration in bed hours
   - For example: If 8 hours of duration in bed is selected, then duration asleep will show only options up to 8 as well.
 
-https://user-images.githubusercontent.com/39013404/157229904-9125fc33-08b5-4e3d-a77f-e2566bb47bee.mp4
+https://user-images.githubusercontent.com/39013404/157232095-3c8e6801-59f3-4c7e-aa4a-a37788b80d9e.mp4
+
 
 - If any time the user selects not a proper valid selection in either dropdown, the button would be disabled
+
+https://user-images.githubusercontent.com/39013404/157232478-2bc804f8-b292-4c9d-9500-92c88f659bf3.mp4
+
+
+- If 0 was selected for duration in bed, the only option in duration asleep would be 0 as well 
+
+https://user-images.githubusercontent.com/39013404/157229788-9b984ba0-0d9d-44e3-967a-9454a6e1fe14.mp4
 
 I created a public mock API post request with Postman -
 Api: https://405e3123-afa2-425a-aa7d-055e1de49dc7.mock.pstmn.io/scores
